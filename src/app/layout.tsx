@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "10 Minutes",
-  description: "A bare-bones Next.js and Convex app.",
+  description: "Ask, vote, and find out who is most likely.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
