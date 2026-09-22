@@ -641,6 +641,11 @@ textarea:focus,
 }
 
 .site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
   width: min(100% - 40px, 1120px);
   margin: auto auto 20px;
   padding: 1.3rem;
@@ -663,6 +668,20 @@ textarea:focus,
 }
 
 /* Admin */
+.admin-branding {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.edition-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .admin-login-page {
   display: grid;
   min-height: 100vh;

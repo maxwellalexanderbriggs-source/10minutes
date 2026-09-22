@@ -206,8 +206,9 @@ function AdminDashboard({ token, onLogout }: { token: string; onLogout: () => vo
   return (
     <main className="admin-shell">
       <header className="admin-header">
-        <div>
+        <div className="admin-branding">
           <span className="admin-tag">ADMIN</span>
+          <span className="edition-label">Section F Edition</span>
         </div>
         <button className="text-button" type="button" onClick={() => void signOut()}>Log out</button>
       </header>

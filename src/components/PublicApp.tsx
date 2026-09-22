@@ -44,7 +44,9 @@ export function PublicApp() {
         <FinalResults questions={state.answerQuestions} />
       )}
       <footer className="site-footer">
-        Made by <a href="https://briggsdavis.com" target="_blank" rel="noreferrer">BriggsDavis</a>
+        <span>Section F Edition</span>
+        <span aria-hidden="true">·</span>
+        <span>Made by <a href="https://briggsdavis.com" target="_blank" rel="noreferrer">BriggsDavis</a></span>
       </footer>
     </main>
   );
