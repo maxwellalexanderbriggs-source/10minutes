@@ -7,7 +7,7 @@ A mobile-first event app for submitting questions, choosing the best ones, and v
 1. Guests submit “Who is most likely to…” questions.
 2. The admin approves or rejects each submission.
 3. Guests vote for their favorite approved questions.
-4. The 15 highest-ranked questions are frozen and guests choose their answers.
+4. The 10 highest-ranked questions are frozen and guests choose their answers.
 5. Voting closes and everyone sees the final results.
 
 The admin controls the live phase at `/admin`.

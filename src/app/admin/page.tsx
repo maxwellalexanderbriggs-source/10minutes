@@ -2,7 +2,6 @@
 
 import { FormEvent, useState, useSyncExternalStore } from "react";
 import { useMutation, useQuery } from "convex/react";
-import Link from "next/link";
 import { api, type Phase } from "@/lib/convex-api";
 import { errorMessage, useDeviceId } from "@/lib/device";
 
@@ -33,7 +32,7 @@ const PHASES: { id: Phase; short: string; label: string; description: string }[]
   { id: "submission", short: "01", label: "Submissions", description: "Guests submit questions" },
   { id: "moderation", short: "1.5", label: "Review", description: "Approve questions" },
   { id: "voting", short: "02", label: "Question voting", description: "Guests choose favorites" },
-  { id: "answering", short: "03", label: "Answer voting", description: "Top 15 get answered" },
+  { id: "answering", short: "03", label: "Answer voting", description: "Top 10 get answered" },
   { id: "closed", short: "04", label: "Results", description: "Voting is closed" },
 ];
 
@@ -88,7 +87,6 @@ function AdminLogin({ deviceId, onLogin }: { deviceId: string; onLogin: (token: 
   return (
     <main className="admin-login-page">
       <form className="admin-login-card" onSubmit={submit}>
-        <Link className="brand" href="/">10 MINUTES</Link>
         <div>
           <p className="eyebrow">ADMIN</p>
           <h1>Event control</h1>
@@ -209,7 +207,6 @@ function AdminDashboard({ token, onLogout }: { token: string; onLogout: () => vo
     <main className="admin-shell">
       <header className="admin-header">
         <div>
-          <Link className="brand" href="/">10 MINUTES</Link>
           <span className="admin-tag">ADMIN</span>
         </div>
         <button className="text-button" type="button" onClick={() => void signOut()}>Log out</button>
@@ -347,7 +344,7 @@ function AdminDashboard({ token, onLogout }: { token: string; onLogout: () => vo
             {targetPhase === "answering" && (
               <div className="warning-box neutral">
                 <strong>The final questions will be frozen.</strong>
-                <span>The 15 highest-ranked approved questions will enter answer voting.</span>
+                <span>The 10 highest-ranked approved questions will enter answer voting. Ties at the cutoff are decided randomly.</span>
               </div>
             )}
             <div className="modal-actions">

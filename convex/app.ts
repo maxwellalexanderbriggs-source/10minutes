@@ -434,7 +434,29 @@ export const changePhase = mutationGeneric({
       ranked.sort(
         (a, b) => b.votes - a.votes || a.createdAt - b.createdAt,
       );
-      topQuestionIds = ranked.slice(0, 15).map((question) => question.id);
+      if (ranked.length <= 10) {
+        topQuestionIds = ranked.map((question) => question.id);
+      } else {
+        const cutoffVotes = ranked[9].votes;
+        const guaranteed = ranked.filter(
+          (question) => question.votes > cutoffVotes,
+        );
+        const tiedAtCutoff = ranked.filter(
+          (question) => question.votes === cutoffVotes,
+        );
+        for (let index = tiedAtCutoff.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [tiedAtCutoff[index], tiedAtCutoff[randomIndex]] = [
+            tiedAtCutoff[randomIndex],
+            tiedAtCutoff[index],
+          ];
+        }
+        const openSlots = 10 - guaranteed.length;
+        topQuestionIds = [
+          ...guaranteed,
+          ...tiedAtCutoff.slice(0, openSlots),
+        ].map((question) => question.id);
+      }
     }
     if (existing) {
       await ctx.db.patch(existing._id, { phase, topQuestionIds });

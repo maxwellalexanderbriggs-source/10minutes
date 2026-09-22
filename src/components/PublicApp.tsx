@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery } from "convex/react";
-import Link from "next/link";
 import { api, type AnswerQuestion, type QuestionSummary } from "@/lib/convex-api";
 import { errorMessage, useDeviceId } from "@/lib/device";
 import { PersonPicker } from "./PersonPicker";
@@ -27,7 +26,6 @@ export function PublicApp() {
   return (
     <main className="site-shell">
       <header className="site-header">
-        <Link className="brand" href="/">10 MINUTES</Link>
         <span className="phase-pill">{PHASE_LABELS[state.phase]}</span>
       </header>
 
@@ -45,6 +43,9 @@ export function PublicApp() {
       {state.phase === "closed" && (
         <FinalResults questions={state.answerQuestions} />
       )}
+      <footer className="site-footer">
+        Made by <a href="https://briggsdavis.com" target="_blank" rel="noreferrer">BriggsDavis</a>
+      </footer>
     </main>
   );
 }
@@ -192,7 +193,7 @@ function QuestionVoting({ deviceId, questions }: { deviceId: string; questions: 
     <section className="content-column">
       <div className="section-heading">
         <p className="eyebrow">PICK YOUR FAVORITES</p>
-        <h1>Which questions should make the final 15?</h1>
+        <h1>Which questions should make the final 10?</h1>
         <p className="lead">Tap as many as you like. Tap again to remove your vote.</p>
       </div>
       {error && <p className="error-message" role="alert">{error}</p>}
@@ -227,7 +228,7 @@ function AnswerVoting({ deviceId, questions }: { deviceId: string; questions: An
   return (
     <section className="content-column">
       <div className="section-heading">
-        <p className="eyebrow">THE FINAL 15</p>
+        <p className="eyebrow">THE FINAL 10</p>
         <h1>Who is most likely?</h1>
         <p className="lead">Choose one person for every question. You can change your answers until voting closes.</p>
       </div>
@@ -313,7 +314,7 @@ function ResultCard({ question, index }: { question: AnswerQuestion; index: numb
       <div className="result-copy">
         <p className="question-number">{String(index + 1).padStart(2, "0")}</p>
         <h2>{question.text}</h2>
-        <p className="winner-label">{leaders.length > 1 ? "TIE" : "WINNER"}</p>
+        <p className="winner-label">{leaders.length > 1 ? "CO-WINNERS" : "WINNER"}</p>
         <p className="winner-name">{leaders.length ? leaders.join(" & ") : "No votes"}</p>
         <p className="result-total">{question.totalAnswers} total {question.totalAnswers === 1 ? "vote" : "votes"}</p>
       </div>
