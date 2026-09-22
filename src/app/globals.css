@@ -1,7 +1,7 @@
 :root {
   --ink: #181714;
   --muted: #706e66;
-  --paper: #f7f6f1;
+  --paper: #ffffff;
   --card: #ffffff;
   --line: #deddd6;
   --orange: #ef5b3f;
@@ -10,10 +10,6 @@
   --green: #16876e;
   --red: #c0392b;
   --shadow: 0 18px 50px rgba(33, 29, 18, 0.09);
-  --card-red: #ff8372;
-  --card-blue: #83cfff;
-  --card-green: #79dda9;
-  --card-yellow: #ffdf6e;
 }
 
 * {
@@ -29,9 +25,7 @@ html {
 body {
   min-height: 100vh;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 5% 0%, rgba(239, 91, 63, 0.08), transparent 26rem),
-    var(--paper);
+  background: var(--paper);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -126,8 +120,9 @@ h2 {
 
 .phase-pill {
   padding: 0.55rem 0.8rem;
-  color: #073c70;
-  background: var(--card-blue);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: #fff;
 }
 
 .hero,
@@ -174,8 +169,7 @@ h2 {
   padding: 1.3rem;
   border: 1px solid var(--line);
   border-radius: 20px;
-  border-color: #e84d38;
-  background: var(--card-red);
+  background: var(--card);
   box-shadow: var(--shadow);
 }
 
@@ -421,23 +415,9 @@ textarea:focus,
 
 .vote-card.selected {
   border-color: var(--ink);
-  box-shadow: inset 0 0 0 2px var(--ink), 0 9px 0 rgba(24, 23, 20, 0.16);
+  background: #f2f2ef;
+  box-shadow: inset 0 0 0 2px var(--ink);
   transform: translateY(-2px);
-}
-
-.vote-card:nth-child(3n + 1) {
-  border-color: #e84d38;
-  background: var(--card-red);
-}
-
-.vote-card:nth-child(3n + 2) {
-  border-color: #258fd1;
-  background: var(--card-blue);
-}
-
-.vote-card:nth-child(3n) {
-  border-color: #24a36b;
-  background: var(--card-green);
 }
 
 .rank,
@@ -466,7 +446,7 @@ textarea:focus,
 }
 
 .selected .vote-count {
-  color: var(--orange);
+  color: var(--ink);
 }
 
 .quiet-note,
@@ -487,24 +467,6 @@ textarea:focus,
   border: 1px solid var(--line);
   border-radius: 18px;
   background: #fff;
-}
-
-.answer-card:nth-of-type(3n + 1),
-.result-card:nth-of-type(3n + 1) {
-  border-color: #e84d38;
-  background: #ffb0a4;
-}
-
-.answer-card:nth-of-type(3n + 2),
-.result-card:nth-of-type(3n + 2) {
-  border-color: #258fd1;
-  background: #a9dcff;
-}
-
-.answer-card:nth-of-type(3n),
-.result-card:nth-of-type(3n) {
-  border-color: #24a36b;
-  background: #a0e8c2;
 }
 
 .answer-card h2,
@@ -682,22 +644,22 @@ textarea:focus,
   width: min(100% - 40px, 1120px);
   margin: auto auto 20px;
   padding: 1.3rem;
-  border-radius: 16px;
-  color: #fff;
-  background: var(--blue);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  background: #fff;
   text-align: center;
   font-size: 0.86rem;
   font-weight: 650;
 }
 
 .site-footer a {
-  border-bottom: 2px solid var(--card-yellow);
-  color: var(--card-yellow);
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
   font-weight: 850;
 }
 
 .site-footer a:hover {
-  color: #fff;
+  color: var(--muted);
 }
 
 /* Admin */
@@ -772,8 +734,8 @@ textarea:focus,
 
 .live-badge {
   padding: 0.55rem 0.75rem;
-  color: var(--green);
-  background: #e4f5ef;
+  color: var(--ink);
+  background: #f1f1ee;
 }
 
 .phase-grid {
@@ -799,18 +761,20 @@ textarea:focus,
 }
 
 .phase-card.active {
-  border-color: var(--orange);
-  background: #fff7f4;
+  border-color: transparent;
+  color: #fff;
 }
 
-.phase-card:nth-child(3n + 1) { background: #ffcbc3; }
-.phase-card:nth-child(3n + 2) { background: #c9eaff; }
-.phase-card:nth-child(3n) { background: #c5f1d9; }
-.phase-card.active { box-shadow: inset 0 0 0 2px var(--ink); }
+.phase-card.active.phase-submission { background: #e21b3c; }
+.phase-card.active.phase-moderation { background: #1368ce; }
+.phase-card.active.phase-voting { color: #181714; background: #f3b400; }
+.phase-card.active.phase-answering { background: #26890c; }
+.phase-card.active.phase-closed { background: #7b2cbf; }
+.phase-card.active { box-shadow: 0 8px 0 rgba(24, 23, 20, 0.18); }
 
 .phase-number {
   margin-bottom: auto;
-  color: var(--orange);
+  color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   font-weight: 800;
@@ -831,10 +795,32 @@ textarea:focus,
   position: absolute;
   top: 0.75rem;
   right: 0.7rem;
-  color: var(--orange-dark);
+  color: currentColor;
   font-size: 0.55rem;
   font-weight: 850;
   letter-spacing: 0.08em;
+}
+
+.phase-card.active .phase-number,
+.phase-card.active small {
+  color: currentColor;
+}
+
+.site-shell .eyebrow {
+  color: var(--ink);
+}
+
+.site-shell .status-icon {
+  background: var(--ink);
+}
+
+.site-shell .winner-label {
+  color: var(--ink);
+}
+
+.site-shell .live-dot {
+  background: var(--ink);
+  box-shadow: 0 0 0 4px rgba(24, 23, 20, 0.1);
 }
 
 .moderation-panel {

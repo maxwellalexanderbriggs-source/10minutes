@@ -228,7 +228,7 @@ function AdminDashboard({ token, onLogout }: { token: string; onLogout: () => vo
               <button
                 type="button"
                 key={phase.id}
-                className={`phase-card ${state.phase === phase.id ? "active" : ""}`}
+                className={`phase-card phase-${phase.id} ${state.phase === phase.id ? "active" : ""}`}
                 onClick={() => state.phase !== phase.id && setTargetPhase(phase.id)}
               >
                 <span className="phase-number">{phase.short}</span>
