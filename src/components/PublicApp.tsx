@@ -26,7 +26,9 @@ export function PublicApp() {
   return (
     <main className="site-shell">
       <header className="site-header">
-        <span className="phase-pill">{PHASE_LABELS[state.phase]}</span>
+        <span className={`phase-pill phase-pill-${state.phase}`}>
+          {PHASE_LABELS[state.phase]}
+        </span>
       </header>
 
       {state.phase === "submission" && <Submission deviceId={deviceId} />}

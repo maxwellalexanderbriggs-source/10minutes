@@ -120,10 +120,15 @@ h2 {
 
 .phase-pill {
   padding: 0.55rem 0.8rem;
-  border: 1px solid var(--line);
-  color: var(--ink);
-  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 3px 0 rgba(24, 23, 20, 0.15);
 }
+
+.phase-pill-submission { color: #fff; background: #e21b3c; }
+.phase-pill-moderation { color: #fff; background: #1368ce; }
+.phase-pill-voting { color: #181714; background: #f3b400; }
+.phase-pill-answering { color: #fff; background: #26890c; }
+.phase-pill-closed { color: #fff; background: #7b2cbf; }
 
 .hero,
 .center-content {
@@ -331,7 +336,8 @@ textarea:focus,
   margin: 0 auto 1.6rem;
   border-radius: 50%;
   color: #fff;
-  background: var(--orange);
+  background: #1368ce;
+  box-shadow: 0 7px 0 #0d4f9f;
   font-size: 1.8rem;
   font-weight: 800;
 }
@@ -393,6 +399,7 @@ textarea:focus,
 }
 
 .vote-card {
+  --card-accent: #e21b3c;
   display: grid;
   grid-template-columns: 38px 1fr auto;
   gap: 1rem;
@@ -404,19 +411,25 @@ textarea:focus,
   border-radius: 16px;
   text-align: left;
   background: #fff;
+  box-shadow: 0 5px 0 var(--card-accent);
   transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
 }
+
+.vote-card:nth-child(5n + 2) { --card-accent: #1368ce; }
+.vote-card:nth-child(5n + 3) { --card-accent: #f3b400; }
+.vote-card:nth-child(5n + 4) { --card-accent: #26890c; }
+.vote-card:nth-child(5n + 5) { --card-accent: #7b2cbf; }
 
 .vote-card:hover:not(:disabled) {
   border-color: #aaa79d;
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(33, 29, 18, 0.06);
+  box-shadow: 0 7px 0 var(--card-accent), 0 12px 24px rgba(33, 29, 18, 0.07);
 }
 
 .vote-card.selected {
   border-color: var(--ink);
   background: #f2f2ef;
-  box-shadow: inset 0 0 0 2px var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink), 0 7px 0 var(--card-accent);
   transform: translateY(-2px);
 }
 
@@ -445,6 +458,10 @@ textarea:focus,
   font-weight: 720;
 }
 
+.vote-count span {
+  color: #e21b3c;
+}
+
 .selected .vote-count {
   color: var(--ink);
 }
@@ -462,12 +479,19 @@ textarea:focus,
 }
 
 .answer-card {
+  --card-accent: #e21b3c;
   position: relative;
   padding: 1.4rem;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: #fff;
+  box-shadow: 0 6px 0 var(--card-accent);
 }
+
+.answer-card:nth-child(5n + 2) { --card-accent: #1368ce; }
+.answer-card:nth-child(5n + 3) { --card-accent: #f3b400; }
+.answer-card:nth-child(5n + 4) { --card-accent: #26890c; }
+.answer-card:nth-child(5n + 5) { --card-accent: #7b2cbf; }
 
 .answer-card h2,
 .result-card h2 {
