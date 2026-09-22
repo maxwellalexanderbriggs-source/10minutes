@@ -783,7 +783,7 @@ textarea:focus,
 
 .moderation-card {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr auto;
   gap: 1rem;
   align-items: center;
   min-height: 76px;
@@ -806,6 +806,83 @@ textarea:focus,
 .moderation-actions {
   display: flex;
   gap: 0.45rem;
+}
+
+.selection-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.select-all-control,
+.question-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 720;
+  cursor: pointer;
+}
+
+.select-all-control input,
+.question-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ink);
+  cursor: pointer;
+}
+
+.question-checkbox {
+  align-self: stretch;
+  min-width: 28px;
+}
+
+.danger-button,
+.delete-button,
+.danger-confirm-button {
+  border: 1px solid #e4aaa3;
+  color: var(--red);
+  background: #fff;
+  font-weight: 760;
+}
+
+.danger-button {
+  min-height: 40px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 9px;
+  font-size: 0.75rem;
+}
+
+.delete-button {
+  min-height: 42px;
+  padding: 0.5rem 0.7rem;
+  border-radius: 9px;
+  font-size: 0.72rem;
+}
+
+.danger-button:hover:not(:disabled),
+.delete-button:hover:not(:disabled) {
+  border-color: var(--red);
+  background: #fde9e6;
+}
+
+.danger-confirm-button {
+  min-height: 48px;
+  padding: 0.8rem 1.2rem;
+  border-color: var(--red);
+  border-radius: 12px;
+  color: #fff;
+  background: var(--red);
+}
+
+.danger-eyebrow {
+  color: var(--red);
 }
 
 .approve-button,
@@ -839,6 +916,11 @@ textarea:focus,
 .warning-box.neutral {
   color: #24458f;
   background: #e9efff;
+}
+
+.warning-box.destructive {
+  color: #842c23;
+  background: #fde9e6;
 }
 
 @media (max-width: 760px) {
@@ -936,16 +1018,23 @@ textarea:focus,
   }
 
   .moderation-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr;
   }
 
   .moderation-actions {
+    grid-column: 1 / -1;
     width: 100%;
   }
 
   .approve-button,
-  .reject-button {
+  .reject-button,
+  .delete-button {
     flex: 1;
+  }
+
+  .selection-toolbar {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .modal-actions {

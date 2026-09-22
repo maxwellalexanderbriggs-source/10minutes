@@ -58,7 +58,7 @@ export const api = {
   >("app:setAnswer"),
   adminLogin: makeFunctionReference<
     "mutation",
-    { passcode: string; token: string },
+    { passcode: string; token: string; deviceId: string },
     { ok: boolean }
   >("app:adminLogin"),
   adminLogout: makeFunctionReference<
@@ -76,6 +76,11 @@ export const api = {
     { token: string; questionId: string; status: "approved" | "rejected" },
     null
   >("app:moderateQuestion"),
+  deleteQuestions: makeFunctionReference<
+    "mutation",
+    { token: string; questionIds: string[] },
+    { deletedCount: number }
+  >("app:deleteQuestions"),
   changePhase: makeFunctionReference<
     "mutation",
     { token: string; phase: Phase },

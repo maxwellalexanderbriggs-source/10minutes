@@ -13,7 +13,9 @@ export default defineSchema({
     status: v.string(),
     submittedBy: v.string(),
     createdAt: v.number(),
-  }).index("by_status", ["status"]),
+  })
+    .index("by_status", ["status"])
+    .index("by_submitter", ["submittedBy"]),
 
   questionVotes: defineTable({
     questionId: v.id("questions"),
@@ -33,5 +35,12 @@ export default defineSchema({
   adminSessions: defineTable({
     token: v.string(),
     expiresAt: v.number(),
-  }).index("by_token", ["token"]),
+  })
+    .index("by_token", ["token"])
+    .index("by_expiry", ["expiresAt"]),
+
+  adminLoginAttempts: defineTable({
+    deviceId: v.string(),
+    attemptedAt: v.number(),
+  }).index("by_device", ["deviceId"]),
 });
